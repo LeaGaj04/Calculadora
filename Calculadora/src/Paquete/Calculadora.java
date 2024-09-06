@@ -9,12 +9,17 @@ package Paquete;
  * @author Leandro
  */
 public class Calculadora extends javax.swing.JFrame {
+    
+    public float primernumero;
+    public float segudnonumero;
+    public String operador;
 
     /**
      * Creates new form Calculadora
      */
     public Calculadora() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -159,6 +164,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jButton19.setText("+");
         jButton19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton21.setText(",");
         jButton21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -282,7 +292,7 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.Casilla.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -324,6 +334,12 @@ public class Calculadora extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         this.Casilla.setText(this.Casilla.getText()+"9");
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        this.primernumero=Float.parseFloat(this.Casilla.getText());
+        this.operador="+";
+        
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
      * @param args the command line arguments
