@@ -11,7 +11,7 @@ package Paquete;
 public class Calculadora extends javax.swing.JFrame {
     
     public float primernumero;
-    public float segudnonumero;
+    public float segundonumero;
     public String operador;
 
     /**
@@ -175,6 +175,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jButton22.setText("=");
         jButton22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
 
         jButton23.setText("0");
         jButton23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -338,8 +343,14 @@ public class Calculadora extends javax.swing.JFrame {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         this.primernumero=Float.parseFloat(this.Casilla.getText());
         this.operador="+";
+        this.Casilla.setText("");
         
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        this.segundonumero=Float.valueOf(this.Casilla.getText());
+        
+    }//GEN-LAST:event_jButton22ActionPerformed
 
     /**
      * @param args the command line arguments
