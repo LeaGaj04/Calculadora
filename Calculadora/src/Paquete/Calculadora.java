@@ -54,6 +54,7 @@ public class Calculadora extends javax.swing.JFrame {
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jButton9.setText("jButton1");
 
@@ -74,7 +75,7 @@ public class Calculadora extends javax.swing.JFrame {
         Casilla.setOpaque(true);
 
         jButton1.setText("C");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 102), 2, true));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -83,6 +84,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jButton4.setText("/");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("7");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -134,6 +140,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jButton11.setText("*");
         jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("9");
         jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -161,6 +172,11 @@ public class Calculadora extends javax.swing.JFrame {
 
         jButton17.setText("-");
         jButton17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton19.setText("+");
         jButton19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -170,8 +186,13 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        jButton21.setText(",");
+        jButton21.setText(".");
         jButton21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         jButton22.setText("=");
         jButton22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 0, 102), 2));
@@ -188,6 +209,9 @@ public class Calculadora extends javax.swing.JFrame {
                 jButton23ActionPerformed(evt);
             }
         });
+
+        jLabel1.setForeground(new java.awt.Color(102, 0, 255));
+        jLabel1.setText("Java");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -237,12 +261,18 @@ public class Calculadora extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(Casilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(Casilla, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,12 +379,53 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.segundonumero=Float.valueOf(this.Casilla.getText());
-        
+        switch(this.operador){
+            case "+":this.Casilla.setText(sincero(this.primernumero+this.segundonumero));break;
+            case "-":this.Casilla.setText(sincero(this.primernumero-this.segundonumero));break;
+            case "*":this.Casilla.setText(sincero(this.primernumero*this.segundonumero));break;       
+            case "/":
+                if(this.segundonumero==0){ this.Casilla.setText("NoSeDivideEntreCero");}
+                    else{    
+                        this.Casilla.setText(sincero(this.primernumero/this.segundonumero));
+                }break;
+        }
     }//GEN-LAST:event_jButton22ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        this.primernumero=Float.parseFloat(this.Casilla.getText());
+        this.operador="-";
+        this.Casilla.setText("");        
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        this.primernumero=Float.parseFloat(this.Casilla.getText());
+        this.operador="*";
+        this.Casilla.setText("");
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.primernumero=Float.parseFloat(this.Casilla.getText());
+        this.operador="/";
+        this.Casilla.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+    if(!(this.Casilla.getText().contains("."))){
+        this.Casilla.setText(this.Casilla.getText()+".");
+    }
+    }//GEN-LAST:event_jButton21ActionPerformed
+    
+    public String sincero(float resultado){
+        String retorno="";
+        retorno=Float.toString(resultado);
+        if(resultado%1==0){
+            retorno=retorno.substring(0, retorno.length()-2);
+            
+        }
+                
+        return retorno;
+    } 
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -408,6 +479,7 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
